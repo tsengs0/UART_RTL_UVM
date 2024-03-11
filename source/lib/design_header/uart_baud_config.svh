@@ -1,0 +1,32 @@
+`ifndef __UART_BAUD_CONFIG_H
+`define __UART_BAUD_CONFIG_H
+
+`define REF_CLK_50MHz
+`define REF_CLK_10MHz
+
+//-------------------------------------------
+// Baurdrate count = REF_CLK (Hz) / baudrate
+`define BAUDRATE_SEL_NUM 7 // # of selectable baudrate
+`define BAUDRATE_SEL_WIDTH $clog2(`BAUDRATE_SEL_NUM)
+`ifdef REF_CLK_50MHz
+    `define BAUDRAT_CNT_WIDTH    13
+    `define BAUDRATE_CNT_4800    (`BAUDRAT_CNT_WIDTH'd10_416)
+    `define BAUDRATE_CNT_9600    (`BAUDRAT_CNT_WIDTH'd5_208)
+    `define BAUDRATE_CNT_14400   (`BAUDRAT_CNT_WIDTH'd3_472)
+    `define BAUDRATE_CNT_19200   (`BAUDRAT_CNT_WIDTH'd2_604)
+    `define BAUDRATE_CNT_38400   (`BAUDRAT_CNT_WIDTH'd1_302)
+    `define BAUDRATE_CNT_57600   (`BAUDRAT_CNT_WIDTH'd868)
+    `define BAUDRATE_CNT_115200  (`BAUDRAT_CNT_WIDTH'd432)
+`endif // REF_CLK_50MHz
+`ifdef REF_CLK_10MHz
+    `define BAUDRAT_CNT_WIDTH    12
+    `define BAUDRATE_CNT_4800    (`BAUDRAT_CNT_WIDTH'd2_083)
+    `define BAUDRATE_CNT_9600    (`BAUDRAT_CNT_WIDTH'd1_042)
+    `define BAUDRATE_CNT_14400   (`BAUDRAT_CNT_WIDTH'd694)
+    `define BAUDRATE_CNT_19200   (`BAUDRAT_CNT_WIDTH'd521)
+    `define BAUDRATE_CNT_38400   (`BAUDRAT_CNT_WIDTH'd260)
+    `define BAUDRATE_CNT_57600   (`BAUDRAT_CNT_WIDTH'd174)
+    `define BAUDRATE_CNT_115200  (`BAUDRAT_CNT_WIDTH'd87)
+`endif // REF_CLK_10MHz
+
+`endif // __UART_BAUD_CONFIG_H
